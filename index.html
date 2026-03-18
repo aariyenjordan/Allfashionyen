@@ -11,33 +11,43 @@ body{
   font-family:Arial;
 }
 
-/* Shutter */
+/* SHUTTER */
 .shutter{
   position:fixed;
   width:100%;
   height:50%;
   background:black;
-  z-index:10;
+  z-index:100;
 }
 
-.top{ top:0; animation:openTop 2s forwards; }
-.bottom{ bottom:0; animation:openBottom 2s forwards; }
+.top{
+  top:0;
+  animation:openTop 2s ease forwards;
+}
+
+.bottom{
+  bottom:0;
+  animation:openBottom 2s ease forwards;
+}
 
 @keyframes openTop{
-  to{transform:translateY(-100%);}
-}
-@keyframes openBottom{
-  to{transform:translateY(100%);}
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-100%);}
 }
 
-/* Name */
+@keyframes openBottom{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(100%);}
+}
+
+/* TEXT */
 h1{
   position:absolute;
   top:45%;
   width:100%;
   text-align:center;
   font-size:60px;
-  color:#ff0000;
+  color:red;
   opacity:0;
   animation:show 2s 2s forwards;
 }
@@ -46,35 +56,48 @@ h1{
   to{opacity:1;}
 }
 
-/* Falcons */
+/* FALCONS */
 .falcon{
   position:absolute;
   width:100px;
-  opacity:0;
 }
 
 @keyframes fly{
-  0%{left:-150px;opacity:1;}
-  100%{left:110%;opacity:1;}
+  0%{
+    left:-150px;
+    opacity:0;
+  }
+  10%{opacity:1;}
+  100%{
+    left:110%;
+    opacity:1;
+  }
 }
 </style>
+
 </head>
 
 <body>
 
+<!-- SHUTTER -->
 <div class="shutter top"></div>
 <div class="shutter bottom"></div>
 
 <h1>ALLFASHIONYEN</h1>
 
-<!-- 12 Falcons -->
 <script>
+// 12 FALCONS
 for(let i=0;i<12;i++){
   let f=document.createElement("img");
-  f.src="https://upload.wikimedia.org/wikipedia/commons/3/32/Falcon_in_flight.jpg";
+
+  // reliable falcon image
+  f.src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Falcon_in_flight.jpg/320px-Falcon_in_flight.jpg";
+
   f.className="falcon";
-  f.style.top=(10+i*5)+"%";
-  f.style.animation="fly 6s linear "+(2+i*0.2)+"s forwards";
+  f.style.top=(5+i*7)+"%";
+
+  f.style.animation="fly 6s linear "+(2.5 + i*0.2)+"s forwards";
+
   document.body.appendChild(f);
 }
 </script>
