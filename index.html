@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AllFashionYen</title>
+<style>
+body {
+  margin:0;
+  background:radial-gradient(circle,#0a0a0a,#000);
+  overflow:hidden;
+  font-family:Arial;
+}
+
+h1 {
+  position:absolute;
+  top:45%;
+  width:100%;
+  text-align:center;
+  font-size:60px;
+  color:#ff0000;
+  letter-spacing:8px;
+  animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;}
+  to {text-shadow:0 0 40px #ff0000,0 0 80px #ff0000;}
+}
+
+.falcon {
+  position:absolute;
+  width:120px;
+  animation:fly 12s ease-in-out infinite;
+}
+
+.falcon2 {
+  animation-delay:6s;
+}
+
+@keyframes fly {
+  0% {left:-150px;top:20%;}
+  50% {top:45%;}
+  100% {left:110%;top:20%;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>ALLFASHIONYEN</h1>
+
+<img class="falcon" src="https://i.imgur.com/8QfKuz1.png">
+<img class="falcon falcon2" src="https://i.imgur.com/8QfKuz1.png">
+
+</body>
+</html>
