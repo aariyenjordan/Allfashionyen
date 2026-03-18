@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALLFASHIONYEN</title>
 
 <style>
@@ -8,36 +9,26 @@ body{
   margin:0;
   background:black;
   overflow:hidden;
-  font-family:Arial;
+  font-family:sans-serif;
 }
 
 /* SHUTTER */
-.shutter{
+.top, .bottom{
   position:fixed;
   width:100%;
   height:50%;
   background:black;
-  z-index:100;
+  z-index:10;
 }
 
-.top{
-  top:0;
-  animation:openTop 2s ease forwards;
-}
-
-.bottom{
-  bottom:0;
-  animation:openBottom 2s ease forwards;
-}
+.top{ top:0; animation:openTop 1.5s ease forwards; }
+.bottom{ bottom:0; animation:openBottom 1.5s ease forwards; }
 
 @keyframes openTop{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(-100%);}
+  to{transform:translateY(-100%);}
 }
-
 @keyframes openBottom{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(100%);}
+  to{transform:translateY(100%);}
 }
 
 /* TEXT */
@@ -46,10 +37,10 @@ h1{
   top:45%;
   width:100%;
   text-align:center;
-  font-size:60px;
+  font-size:34px;
   color:red;
   opacity:0;
-  animation:show 2s 2s forwards;
+  animation:show 1s 1.5s forwards;
 }
 
 @keyframes show{
@@ -59,17 +50,26 @@ h1{
 /* FALCONS */
 .falcon{
   position:absolute;
-  width:100px;
+  width:70px;
+  left:-100px;
 }
 
-@keyframes fly{
+/* FULL SCREEN FLY */
+@keyframes flyFull{
   0%{
-    left:-150px;
+    left:-120px;
+    transform:translateY(0) scale(0.9);
     opacity:0;
   }
-  10%{opacity:1;}
+  10%{
+    opacity:1;
+  }
+  50%{
+    transform:translateY(-20px) scale(1.1);
+  }
   100%{
     left:110%;
+    transform:translateY(0) scale(1);
     opacity:1;
   }
 }
@@ -79,24 +79,24 @@ h1{
 
 <body>
 
-<!-- SHUTTER -->
-<div class="shutter top"></div>
-<div class="shutter bottom"></div>
+<div class="top"></div>
+<div class="bottom"></div>
 
 <h1>ALLFASHIONYEN</h1>
 
 <script>
-// 12 FALCONS
-for(let i=0;i<12;i++){
+for(let i=0;i<10;i++){
   let f=document.createElement("img");
 
-  // reliable falcon image
   f.src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Falcon_in_flight.jpg/320px-Falcon_in_flight.jpg";
 
   f.className="falcon";
-  f.style.top=(5+i*7)+"%";
 
-  f.style.animation="fly 6s linear "+(2.5 + i*0.2)+"s forwards";
+  // spread vertically
+  f.style.top=(5 + i*8) + "%";
+
+  // smooth delay
+  f.style.animation="flyFull 6s ease-in-out " + (1.5 + i*0.3) + "s forwards";
 
   document.body.appendChild(f);
 }
