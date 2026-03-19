@@ -12,60 +12,38 @@ body{
   font-family:sans-serif;
 }
 
-/* SHUTTER */
-.top, .bottom{
-  position:fixed;
-  width:100%;
-  height:50%;
-  background:black;
-  z-index:10;
-}
-
-.top{ top:0; animation:openTop 1.5s ease forwards; }
-.bottom{ bottom:0; animation:openBottom 1.5s ease forwards; }
-
-@keyframes openTop{
-  to{transform:translateY(-100%);}
-}
-@keyframes openBottom{
-  to{transform:translateY(100%);}
-}
-
 /* TEXT */
 h1{
   position:absolute;
   top:45%;
   width:100%;
   text-align:center;
-  font-size:34px;
-  color:red;
-  opacity:0;
-  animation:show 1s 1.5s forwards;
+  font-size:36px;
+  color:#ff0000;
+  letter-spacing:5px;
+  text-shadow:0 0 10px red,0 0 30px red;
 }
 
-@keyframes show{
-  to{opacity:1;}
-}
-
-/* FALCONS */
+/* FALCON */
 .falcon{
   position:absolute;
-  width:70px;
-  left:-100px;
+  width:80px;
+  filter: drop-shadow(0 0 5px red);
 }
 
-/* FULL SCREEN FLY */
-@keyframes flyFull{
+/* REALISTIC FLY */
+@keyframes flyReal{
   0%{
-    left:-120px;
-    transform:translateY(0) scale(0.9);
+    left:-150px;
+    transform:translateY(0) scale(0.8) rotate(0deg);
     opacity:0;
   }
-  10%{
-    opacity:1;
+  10%{opacity:1;}
+  40%{
+    transform:translateY(-20px) scale(1) rotate(5deg);
   }
-  50%{
-    transform:translateY(-20px) scale(1.1);
+  60%{
+    transform:translateY(10px) scale(1.1) rotate(-5deg);
   }
   100%{
     left:110%;
@@ -74,13 +52,9 @@ h1{
   }
 }
 </style>
-
 </head>
 
 <body>
-
-<div class="top"></div>
-<div class="bottom"></div>
 
 <h1>ALLFASHIONYEN</h1>
 
@@ -88,15 +62,14 @@ h1{
 for(let i=0;i<10;i++){
   let f=document.createElement("img");
 
-  f.src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Falcon_in_flight.jpg/320px-Falcon_in_flight.jpg";
+  // REAL FALCON PNG (working)
+  f.src="https://pngimg.com/uploads/eagle/eagle_PNG1228.png";
 
   f.className="falcon";
 
-  // spread vertically
   f.style.top=(5 + i*8) + "%";
 
-  // smooth delay
-  f.style.animation="flyFull 6s ease-in-out " + (1.5 + i*0.3) + "s forwards";
+  f.style.animation="flyReal 6s ease-in-out " + (i*0.4) + "s infinite";
 
   document.body.appendChild(f);
 }
